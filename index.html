@@ -155,16 +155,40 @@
 
     </div>
 
-    <!-- the module continues past the fold -->
-    <div class="jo-hint settle settle-d2">
+    <!-- The module continues past the fold. This was a cover-cropped strip, which sliced
+         each screenshot into a meaningless sliver of its own nav bar ("bout Us Features
+         Pricing") and read as broken overflow. Now every thumbnail is whole, and each one
+         is a real link, so a recruiter can see all four projects and jump to any of them
+         without scrolling. -->
+    <nav class="jo-hint settle settle-d2" aria-label="The four projects">
       <p class="jo-hint-lbl">Four projects below</p>
-      <div class="jo-hint-strip" aria-hidden="true">
-        <img src="assets/work/nepdine-landing.webp" width="1799" height="1077" alt="" loading="eager" decoding="async">
-        <img src="assets/work/movie-detail.webp" width="401" height="779" alt="" loading="eager" decoding="async">
-        <img src="assets/work/wishkart-home.webp" width="317" height="461" alt="" loading="eager" decoding="async">
-        <img src="assets/work/dualsense-card.jpg" width="772" height="490" alt="" loading="eager" decoding="async">
-      </div>
-    </div>
+      <ul class="jo-index">
+        <li><a href="#p1">
+          <span class="jo-thumb"><img src="assets/work/nepdine-landing.webp"
+            width="1799" height="1077" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">Nepdine</span>
+          <span class="jo-thumb-k">Restaurant system</span>
+        </a></li>
+        <li><a href="#p2">
+          <span class="jo-thumb"><img src="assets/work/movie-detail.webp"
+            width="401" height="779" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">Movie Reservation</span>
+          <span class="jo-thumb-k">Mobile app</span>
+        </a></li>
+        <li><a href="#p3">
+          <span class="jo-thumb"><img src="assets/work/wishkart-home.webp"
+            width="317" height="461" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">WishKart</span>
+          <span class="jo-thumb-k">Greeting cards</span>
+        </a></li>
+        <li><a href="#p4">
+          <span class="jo-thumb"><img src="assets/work/dualsense-card.jpg"
+            width="772" height="490" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">DualSense</span>
+          <span class="jo-thumb-k">Product study</span>
+        </a></li>
+      </ul>
+    </nav>
   </div>
 </section>
 
