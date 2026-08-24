@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" width="1600" height="700"
+     preserveAspectRatio="xMidYMax slice" role="img" aria-hidden="true" focusable="false">
+  <title>Ink-wash mountain landscape</title>
+
+  <!--
+    Sumi-e's defining property is the BRUSH EDGE, not the silhouette. A polygon under a
+    linear gradient reads as chart geometry however angular it is. So every crest here is a
+    tapered closed stroke (thick at the belly, pointed at both ends) rather than an outline;
+    ink POOLS where the brush slowed, at each stroke's base; a thresholded-turbulence mask
+    breaks the ink up into DRY-BRUSH tooth so no edge is mathematically clean; and the mist
+    is cloudy masked gradient, never a hard-edged rectangle.
+  -->
+
+  <defs>
+    <!-- DRY BRUSH: turbulence thresholded into a mask, so ink breaks up where the brush
+         ran out of charge. This is what separates a brush mark from a filled shape. -->
+    <filter id="dry" x="-8%" y="-12%" width="116%" height="126%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.042" numOctaves="2" seed="13" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="9"
+                         xChannelSelector="R" yChannelSelector="G" result="wobbled"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.55 0.22" numOctaves="3" seed="41" result="tooth"/>
+      <feComponentTransfer in="tooth" result="toothA">
+        <feFuncA type="table" tableValues="0.28 0.92 1 1"/>
+      </feComponentTransfer>
+      <feComposite in="wobbled" in2="toothA" operator="in"/>
+    </filter>
+
+    <!-- a wetter, softer version for the far range: less tooth, more bleed -->
+    <filter id="wet" x="-8%" y="-12%" width="116%" height="126%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.03" numOctaves="2" seed="7" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="12"
+                         xChannelSelector="R" yChannelSelector="G" result="wobbled"/>
+      <feGaussianBlur in="wobbled" stdDeviation="1.4"/>
+    </filter>
+
+    <!-- CLOUD: soft gradient modulated by turbulence, so mist has no seam. Replaces the
+         hard-edged rectangles that read as banding across the massif. -->
+    <filter id="cloudify" x="-12%" y="-40%" width="124%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.019" numOctaves="3" seed="23" result="c"/>
+      <feComponentTransfer in="c" result="ca">
+        <feFuncA type="table" tableValues="0 0.35 0.8 1"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="ca" operator="in"/>
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+
+    <linearGradient id="mistY" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#e6e1d3" stop-opacity="0"/>
+      <stop offset=".38" stop-color="#e6e1d3" stop-opacity="1"/>
+      <stop offset=".68" stop-color="#e6e1d3" stop-opacity=".85"/>
+      <stop offset="1"   stop-color="#e6e1d3" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- ink washes: value carries depth, far to near -->
+    <linearGradient id="wFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#6c7480" stop-opacity=".46"/>
+      <stop offset=".5"  stop-color="#7c848f" stop-opacity=".16"/>
+      <stop offset="1"   stop-color="#7c848f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#333b49" stop-opacity=".80"/>
+      <stop offset=".3"  stop-color="#434b59" stop-opacity=".46"/>
+      <stop offset=".72" stop-color="#535b69" stop-opacity=".10"/>
+      <stop offset="1"   stop-color="#535b69" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#191512" stop-opacity=".92"/>
+      <stop offset=".42" stop-color="#241f1b" stop-opacity=".60"/>
+      <stop offset="1"   stop-color="#302a25" stop-opacity=".12"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ═══════════ FAR RANGE — dry, broken, almost gone into the paper ═══════════ -->
+  <g filter="url(#wet)">
+    <path fill="url(#wFar)" d="M0,474 L104,470 L168,404 L200,436 L246,372 L288,404 L330,352 L372,410
+      L420,458 L470,472 L516,438 L566,382 L610,320 L640,288 L668,326 L700,300 L734,356 L774,414
+      L816,452 L866,472 L916,462 L962,410 L1002,366 L1034,394 L1064,356 L1098,404 L1142,452
+      L1190,472 L1240,458 L1288,402 L1332,344 L1368,304 L1396,338 L1428,310 L1466,364 L1508,420
+      L1556,458 L1600,470 L1600,700 L0,700 Z"/>
+    <!-- crest strokes: tapered, so the ridge line has a brush belly and pointed ends -->
+    <g fill="#4b5360" fill-opacity=".5">
+      <path d="M168,404 L200,436 L246,372 L288,404 L330,352 L372,410 L420,458
+               L414,462 L370,418 L328,362 L286,412 L244,382 L198,444 L166,410 Z"/>
+      <path d="M566,382 L610,320 L640,288 L668,326 L700,300 L734,356
+               L728,362 L698,312 L666,340 L638,300 L612,332 L570,390 Z"/>
+      <path d="M1288,402 L1332,344 L1368,304 L1396,338 L1428,310 L1466,364
+               L1460,370 L1426,322 L1394,350 L1366,316 L1334,354 L1292,408 Z"/>
+    </g>
+  </g>
+
+  <!-- cloud mist severing the far range, no straight edge anywhere -->
+  <g filter="url(#cloudify)">
+    <rect x="-60" y="410" width="1720" height="110" fill="url(#mistY)"/>
+  </g>
+
+  <!-- ═══════════ MID MASSIF — the subject ═══════════ -->
+  <g filter="url(#dry)">
+    <path fill="url(#wMid)" d="M0,552 L88,546 L146,482 L184,514 L232,464 L268,502 L308,540 L364,552
+      L418,544 L474,468 L524,388 L570,310 L610,246 L636,206 L656,240 L678,220 L704,276 L730,326
+      L762,290 L790,340 L826,410 L866,472 L906,520 L952,548 L1006,552 L1058,538 L1100,490
+      L1142,452 L1176,482 L1212,520 L1264,548 L1324,552 L1384,540 L1436,494 L1478,458
+      L1514,484 L1558,518 L1600,538 L1600,700 L0,700 Z"/>
+
+    <!-- The summit crest: ONE narrow tapered mark riding the ridge line, not a set of
+         plates. Wide strokes here read as faceted armour, which is the opposite of a
+         brush. The belly is only a few pixels deep; the taper does the work. -->
+    <g fill="#232b38">
+      <path fill-opacity=".8" d="M474,468 L524,388 L570,310 L610,246 L636,206 L656,240 L678,220
+               L704,276 L730,326 L762,290 L790,340 L826,410 L866,472
+               L858,478 L820,416 L784,348 L758,300 L732,336 L700,286 L674,232 L654,252
+               L638,220 L614,258 L576,318 L530,396 L482,474 Z"/>
+    </g>
+
+    <!-- INK POOLING: pigment gathered where the brush slowed, at the crest's low points
+         only — not across the face, which is what created the plate look. -->
+    <g fill="#1b2230">
+      <path fill-opacity=".34" d="M654,252 L674,232 L700,286 L682,300 L658,268 Z"/>
+      <path fill-opacity=".24" d="M758,300 L784,348 L768,356 L744,314 Z"/>
+    </g>
+
+    <!-- one shaded flank, following the massif's own structure, kept soft and singular -->
+    <g fill="#2c3442">
+      <path fill-opacity=".2" d="M636,206 L656,240 L678,220 L704,276 L690,340 L648,300 L630,250 Z"/>
+    </g>
+  </g>
+
+  <!-- mist pooling in the valleys, cloudy and uneven -->
+  <g filter="url(#cloudify)">
+    <rect x="-60" y="492" width="1720" height="126" fill="url(#mistY)"/>
+  </g>
+
+  <!-- ═══════════ NEAR BANK — wet, dark, cropped by the frame ═══════════ -->
+  <g filter="url(#dry)">
+    <path fill="url(#wNear)" d="M0,436 L54,492 L100,536 L148,572 L192,600 L236,620 L198,630 L156,634
+      L220,656 L288,666 L374,668 L462,660 L548,648 L640,634 L722,626 L804,630 L884,644 L964,658
+      L1050,666 L1140,664 L1230,652 L1322,640 L1416,636 L1504,644 L1600,658 L1600,700 L0,700 Z"/>
+    <!-- the darkest structure on the page: the bank's own facets, with pooling at the water -->
+    <g fill="#100d0b">
+      <path fill-opacity=".5" d="M0,436 L54,492 L30,516 L0,476 Z"/>
+      <path fill-opacity=".42" d="M54,492 L100,536 L72,558 L30,516 Z"/>
+      <path fill-opacity=".34" d="M100,536 L148,572 L122,594 L72,558 Z"/>
+      <path fill-opacity=".28" d="M156,634 L220,656 L288,666 L280,674 L214,666 L152,644 Z"/>
+    </g>
+  </g>
+
+  <!-- ═══════════ LOWER THIRD — water, and a boat as the scale figure ═══════════ -->
+  <!-- The empty lower third needed a subject. A single boat is the classical device: it
+       gives the water a scale and pushes the massif into the distance. It sits inboard and
+       clear of the sill — hard against the bottom-right it was clipped, its reflection fell
+       outside the frame, and it collided with the 床の間 caption, reading as dirt. -->
+  <g filter="url(#dry)">
+    <!-- dragged dry strokes: the flattest, driest marks in the picture. Carrying real
+         value now — at 10-16% they were invisible and the band read as bare paper. -->
+    <g fill="#241f1b">
+      <path fill-opacity=".26" d="M232,672 L470,667 L676,670 L764,675 L676,678 L470,674 L232,677 Z"/>
+      <path fill-opacity=".2"  d="M900,686 L1074,681 L1242,684 L1322,688 L1242,691 L1074,688 L900,691 Z"/>
+      <path fill-opacity=".16" d="M418,692 L618,688 L798,691 L884,695 L798,698 L618,695 L418,698 Z"/>
+      <path fill-opacity=".14" d="M1000,664 L1160,660 L1300,663 L1372,667 L1300,670 L1160,667 L1000,670 Z"/>
+      <path fill-opacity=".12" d="M120,690 L300,686 L452,689 L520,693 L452,696 L300,693 L120,696 Z"/>
+    </g>
+
+    <!-- The boat: small and light on purpose. Its job is to give the massif SCALE, so it
+         has to read as a distant thing — oversized and near-black it became the subject and
+         looked like a barge. Held well above the sill so nothing clips. -->
+    <g fill="#171310">
+      <path fill-opacity=".72" d="M702,626 C716,624 748,623 772,625 C782,626 788,627 789,629
+               C780,634 762,636 740,637 C718,637 706,635 700,632 C697,630 699,627 702,626 Z"/>
+      <path fill-opacity=".6" d="M742,609 C745,606 749,606 752,609 L753,624 L741,624 Z"/>
+      <path fill-opacity=".42" d="M764,600 L767,602 L748,627 L744,625 Z"/>
+      <path fill-opacity=".34" d="M706,620 L724,618 L725,625 L707,626 Z"/>
+    </g>
+    <!-- the reflection: one broken dry stroke, held clear of the sill -->
+    <path fill="#171310" fill-opacity=".14"
+          d="M704,641 C722,639 754,639 780,641 C768,645 744,647 724,646 C712,646 704,643 704,641 Z"/>
+  </g>
+</svg>

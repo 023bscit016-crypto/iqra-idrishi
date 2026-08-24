@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40"
+     role="img" aria-hidden="true" focusable="false">
+  <title>Seigaiha wave pattern</title>
+  <!-- 青海波. Concentric arcs on a half-drop grid: each scale is four nested arcs, the
+       next row offset by half a unit so the crests interlock. Drawn as strokes rather than
+       filled shells so it reads as printed line, not as a gradient. -->
+  <defs>
+    <g id="scale">
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#e6e1d3" stroke-width="2.1"/>
+      <circle cx="0" cy="0" r="22.5" fill="none" stroke="#e6e1d3" stroke-width="1.7"/>
+      <circle cx="0" cy="0" r="15" fill="none" stroke="#e6e1d3" stroke-width="1.4"/>
+      <circle cx="0" cy="0" r="7.5" fill="none" stroke="#e6e1d3" stroke-width="1.1"/>
+    </g>
+    <clipPath id="tile"><rect x="0" y="0" width="120" height="40"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <!-- row on the baseline -->
+    <use href="#scale" x="0"   y="40"/>
+    <use href="#scale" x="40"  y="40"/>
+    <use href="#scale" x="80"  y="40"/>
+    <use href="#scale" x="120" y="40"/>
+    <!-- half-drop row above, offset by 20 -->
+    <use href="#scale" x="-20" y="20"/>
+    <use href="#scale" x="20"  y="20"/>
+    <use href="#scale" x="60"  y="20"/>
+    <use href="#scale" x="100" y="20"/>
+    <use href="#scale" x="140" y="20"/>
+    <!-- and again on the tile's top edge so the pattern is seamless vertically -->
+    <use href="#scale" x="0"   y="0"/>
+    <use href="#scale" x="40"  y="0"/>
+    <use href="#scale" x="80"  y="0"/>
+    <use href="#scale" x="120" y="0"/>
+  </g>
+</svg>
