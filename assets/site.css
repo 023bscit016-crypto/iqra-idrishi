@@ -724,16 +724,56 @@ section{position:relative}
   text-align:right;white-space:nowrap;padding-top:.4em}
 
 /* ── ABOUT ───────────────────────────────────────────────────────────────── */
-.hito{display:grid;gap:var(--ken);grid-template-columns:minmax(0,1.28fr) minmax(0,1fr);
+.hito{display:grid;gap:var(--ken);grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
   align-items:start}
+.hito-left{display:grid;gap:calc(var(--ken)*.85)}
 .hito-prose p{font-size:clamp(1.06rem,1.42vw,1.24rem);line-height:1.76}
 .hito-prose p+p{margin-top:1.05em}
+
+/* ── SKETCHBOOK ──────────────────────────────────────────────────────────── */
+/* Her own paper practice, surfaced beside the bio rather than filed under a
+   bullet. Same tokonoma alcove used to hold the project screens — timber post
+   and sill, prints ranked on one baseline — so the hand-drawn work reads as
+   part of the same body, not a bolted-on aside. */
+.sketchbook-tag{font-family:var(--face-jp);font-size:1.5rem;color:var(--beni-ink);
+  line-height:1;margin-bottom:.2em}
+.sketchbook-label{font-family:Yuji,var(--face-display);font-style:italic;
+  font-size:clamp(1.1rem,1.6vw,1.3rem);color:var(--beni-ink);margin-bottom:.85em;
+  letter-spacing:.01em}
+/* the alcove is normally scoped to a dark (field-ai) section; kept here in
+   case it's reused elsewhere, but the sketchbook now uses its own mosaic */
+.alcove-dark{
+  background:linear-gradient(178deg,var(--aizuri-lo),color-mix(in srgb,var(--aizuri-lo) 78%,#000));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb,var(--kigara) 46%,transparent),
+    inset 5px 7px 26px -8px rgb(0 0 0/.66),
+    inset -3px -4px 16px -8px rgb(0 0 0/.4),
+    0 20px 48px -26px rgb(0 0 0/.62);
+}
+.sketchbook-grid{display:grid;gap:calc(var(--bu)*1.05);
+  grid-template-columns:1.08fr 1fr 1fr;grid-template-rows:1fr 1fr}
+.sketchbook-grid figure{margin:0}
+.sketchbook-grid img{display:block;width:100%;height:100%;object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 14px 30px -16px rgb(23 19 16/.55),
+    inset 0 0 0 1px color-mix(in srgb,var(--kigara) 30%,transparent)}
+.sk-feature{grid-row:1/3;grid-column:1/2}
+.sk-feature img{min-height:clamp(360px,32vw,480px)}
+.sketchbook-grid figure:nth-child(2){grid-column:2/3;grid-row:1/2}
+.sketchbook-grid figure:nth-child(3){grid-column:3/4;grid-row:1/2}
+.sketchbook-grid figure:nth-child(4){grid-column:2/3;grid-row:2/3}
+.sketchbook-grid figure:nth-child(5){grid-column:3/4;grid-row:2/3}
+.sketchbook-grid figure:not(.sk-feature) img{min-height:clamp(170px,15vw,225px)}
+
 .dl-ledger{display:grid;gap:0}
 .dl-row{padding:calc(var(--bu)*1.15) calc(var(--bu)*1.3);
   box-shadow:inset 0 -1px 0 color-mix(in srgb,var(--kigara) 26%,transparent)}
 .dl-row:last-child{box-shadow:none}
-.dl-row dt{font-size:var(--t-label);letter-spacing:.21em;text-transform:uppercase;font-weight:700;
+.dl-row dt{display:flex;align-items:center;gap:.55em;
+  font-size:var(--t-label);letter-spacing:.21em;text-transform:uppercase;font-weight:700;
   margin-bottom:.5em}
+.dl-icon{width:1.05em;height:1.05em;flex:none;fill:var(--kigara-lo);
+  color:var(--kigara-lo)}
 .dl-row dd{margin:0;font-size:var(--t-sm);line-height:1.62}
 .dl-row dd b{font-weight:700}
 .dl-row ul{display:grid;gap:.42em}
@@ -838,6 +878,16 @@ section{position:relative}
   .piece-trio .piece-body,.piece-tight .piece-body{grid-template-columns:minmax(0,1fr)}
   .hito,.kyu-in{grid-template-columns:minmax(0,1fr)}
   .kyu-in{align-items:start}
+}
+@media (max-width:640px){
+  .sketchbook-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:calc(var(--bu)*.7)}
+  .sk-feature{grid-column:1/3;grid-row:1/2}
+  .sk-feature img{min-height:0;aspect-ratio:16/11;object-position:50% 22%}
+  .sketchbook-grid figure:nth-child(2){grid-column:1/2;grid-row:2/3}
+  .sketchbook-grid figure:nth-child(3){grid-column:2/3;grid-row:2/3}
+  .sketchbook-grid figure:nth-child(4){grid-column:1/2;grid-row:3/4}
+  .sketchbook-grid figure:nth-child(5){grid-column:2/3;grid-row:3/4}
+  .sketchbook-grid figure:not(.sk-feature) img{min-height:0;aspect-ratio:1/1}
 }
 @media (max-width:900px){
   :root{--ken:clamp(44px,8vw,62px)}
