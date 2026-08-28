@@ -291,6 +291,20 @@ section{position:relative}
 .rail-nav a:hover::after,.rail-nav a:focus-visible::after,
 .rail-nav a[aria-current=true]::after{transform:scaleX(1)}
 
+/* the one boxed control on the page — a pill-free, sharp-edged frame consistent with the
+   site's joinery grammar (a lattice-style border, never a rounded corner) */
+.rail-nav a.rail-cta{
+  padding:.62em 1.3em;letter-spacing:.14em;
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--kigara) 70%,transparent);
+  display:inline-flex;align-items:center;gap:.55em;
+  transition:background-color .3s var(--ease),color .3s var(--ease);
+}
+.rail-nav a.rail-cta::after{content:none}
+.rail-nav a.rail-cta:hover{
+  background-color:color-mix(in srgb,var(--kigara) 12%,transparent);
+  color:var(--sumi);
+}
+
 /* ── THE SEAL (hanko) ────────────────────────────────────────────────────── */
 /* Vermilion is rationed to two meanings on this page: the sun in the borrowed
    landscape, and authorship. This is authorship. */
@@ -355,7 +369,7 @@ section{position:relative}
 /* ── HERO ────────────────────────────────────────────────────────────────── */
 .jo{
   position:relative;overflow:hidden;
-  min-height:min(88svh,880px);
+  min-height:calc(100svh - var(--ken)*.82);
   display:grid;align-content:center;
   padding-block:calc(var(--ken)*.9) 0;
 }
@@ -389,7 +403,8 @@ section{position:relative}
    reads as one consistent voice rather than a new style being introduced */
 .jo-explore{
   margin-top:calc(var(--bu)*1.6);
-  font-size:var(--t-xs);font-weight:700;letter-spacing:.03em;line-height:1.55;
+  font-size:var(--t-xs);font-weight:700;letter-spacing:.12em;line-height:1.55;
+  text-transform:uppercase;
   color:color-mix(in srgb,var(--sumi) 88%,var(--shoji));
 }
 .jo-sign{display:flex;align-items:center;gap:calc(var(--bu)*1.5);
@@ -399,7 +414,7 @@ section{position:relative}
 
 /* the shakkei alcove: the landscape is seen THROUGH structure */
 .shakkei{
-  position:relative;aspect-ratio:4/3.05;overflow:hidden;
+  position:relative;aspect-ratio:1/1;overflow:hidden;
   background:linear-gradient(184deg,var(--shoji-hi) 6%,var(--shoji) 52%,var(--shoji-lo));
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb,var(--kigara) 46%,transparent),
@@ -411,10 +426,10 @@ section{position:relative}
   box-shadow:3px 0 12px -4px rgb(23 19 16/.5)}
 .shakkei-land{
   position:absolute;inset:0;z-index:1;
-  /* Sized so the ridges own the lower two-thirds. `cover` would scale a 1600x700
-     scene up inside a 4:3 frame until only empty sky showed; too small and the
-     view reads as a small picture hung in a big empty window. */
-  background:url(ink/ridges.svg) center 96%/172% auto no-repeat;
+  /* height stays `auto` so the source art's own proportions are preserved — only the
+     WIDTH is set, never both, so the mountains are cropped to fit the now-square frame
+     rather than stretched to fill it. */
+  background:url(ink/ridges.svg) center 88%/148% auto no-repeat;
   will-change:transform;
 }
 .shakkei-sun{position:absolute;z-index:2;right:14%;top:9%;width:17%;aspect-ratio:1;
@@ -443,57 +458,6 @@ section{position:relative}
   font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;
   color:color-mix(in srgb,var(--sumi) 74%,var(--shoji));
 }
-
-/* the module continues past the fold: the first work plate is already cropped
-   into view, so a visitor knows there is real work below without scrolling */
-.jo-hint{margin-top:calc(var(--ken)*.68);position:relative}
-
-/* Each thumbnail fills its box completely — no letterboxed background bars. Cropping
-   from the CENTER instead of the top, because the top-anchored crop assumed every
-   screenshot has a recognizable header there; portrait screens and non-header
-   compositions (Movie Reservation, WishKart, DualSense) don't, so a top crop just showed
-   an arbitrary strip. A center crop reliably lands on the most representative part of
-   each screen — the content, not empty chrome. */
-.jo-index{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--bu)}
-.jo-index a{
-  display:grid;gap:calc(var(--bu)*.42);text-decoration:none;
-  padding-bottom:calc(var(--bu)*.3);
-}
-.jo-thumb{
-  position:relative;overflow:hidden;
-  height:clamp(150px,22vh,240px);
-  background:var(--shoji-lo);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb,var(--kigara) 34%,transparent),
-    0 5px 12px -8px rgb(23 19 16/.4);
-  transition:box-shadow .34s var(--ease),transform .34s var(--ease);
-}
-.jo-thumb img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center center;
-  filter:saturate(.94);
-}
-.jo-thumb-n{font-size:var(--t-label);font-weight:700;letter-spacing:.02em;line-height:1.25}
-.jo-thumb-k{
-  font-size:var(--t-label);line-height:1.25;
-  color:color-mix(in srgb,var(--sumi) 76%,var(--shoji));
-}
-.jo-index a:hover .jo-thumb,.jo-index a:focus-visible .jo-thumb{
-  transform:translateY(-2px);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb,var(--kigara) 62%,transparent),
-    0 9px 18px -8px rgb(23 19 16/.5);
-}
-.jo-index a:hover .jo-thumb-n{text-decoration:underline;text-underline-offset:.2em}
-.jo-hint-lbl{
-  display:flex;align-items:center;gap:.8em;
-  padding-bottom:calc(var(--bu)*.9);
-  font-size:var(--t-xs);letter-spacing:.24em;text-transform:uppercase;font-weight:700;
-  color:color-mix(in srgb,var(--sumi) 76%,var(--shoji));
-}
-.jo-hint-lbl::after{content:"";flex:1;height:1px;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--kigara) 52%,transparent),transparent)}
 
 /* ── SECTION HEADS ───────────────────────────────────────────────────────── */
 .head{display:grid;gap:calc(var(--bu)*1.4);margin-bottom:calc(var(--ken)*.92)}
@@ -854,8 +818,7 @@ section{position:relative}
   .jo-name{font-size:clamp(3rem,8.4vw,6.6rem)}
   .jo-lede{margin-top:calc(var(--bu)*1.5)}
   .jo-sign{margin-top:calc(var(--bu)*1.7)}
-  .jo-hint{margin-top:calc(var(--ken)*.4)}
-  .shakkei{aspect-ratio:4/2.7}
+  .shakkei{aspect-ratio:1/1}
 }
 
 /* 1366x768 is one of the most common laptop sizes and the block above still left the
@@ -866,10 +829,7 @@ section{position:relative}
   .jo-role{margin-top:calc(var(--bu)*1.5)}
   .jo-lede{margin-top:calc(var(--bu)*1.1);font-size:1.02rem}
   .jo-sign{margin-top:calc(var(--bu)*1.2)}
-  .jo-hint{margin-top:calc(var(--ken)*.32)}
-  .jo-thumb{height:110px}
-  .jo-thumb-k{display:none}
-  .shakkei{aspect-ratio:4/2.3}
+  .shakkei{aspect-ratio:1/1}
   .seal{--seal-size:56px}
 }
 
@@ -895,7 +855,7 @@ section{position:relative}
   .jo-tate{display:none}
   .jo{min-height:auto;padding-block:calc(var(--ken)*1.2) 0}
   .jo-name{font-size:clamp(3rem,15vw,5.6rem)}
-  .shakkei{aspect-ratio:4/2.9}
+  .shakkei{aspect-ratio:1/1}
   .rail-nav{gap:.9rem}
   .rail-nav a{font-size:var(--t-label);letter-spacing:.13em}
   .course{grid-template-columns:auto minmax(0,1fr);gap:calc(var(--bu)*1.1)}
@@ -920,18 +880,13 @@ section{position:relative}
   .jo-name{font-size:clamp(2.6rem,13vw,4.4rem)}
   .jo-lede{margin-top:calc(var(--bu)*1.4);font-size:1.06rem}
   .jo-sign{margin-top:calc(var(--bu)*1.5)}
-  .jo-hint{margin-top:calc(var(--ken)*.34)}
-  .shakkei{aspect-ratio:4/2.4}
+  .shakkei{aspect-ratio:1/1}
   .rank{grid-template-columns:repeat(2,1fr);gap:calc(var(--bu)*1.2)}
   .rank-a,.rank-b{margin-bottom:0}
   .trio{grid-template-columns:1fr}
   /* one row, not two: at 390 a 2x2 index pushed itself 140px below the fold, which is
      the very thing this band exists to avoid. Name only; the kind line is redundant when
      the project sections are one tap away. */
-  .jo-index{grid-template-columns:repeat(4,1fr);gap:calc(var(--bu)*.8)}
-  .jo-thumb{height:100px}
-  .jo-thumb-k{display:none}
-  .jo-thumb-n{font-size:var(--t-label);letter-spacing:0}
   .plate-row{grid-template-columns:minmax(0,1fr);gap:.3em}
   .tool{grid-template-columns:auto minmax(0,1fr);gap:calc(var(--bu)*1.1) calc(var(--bu)*1.2)}
   .tool-d{grid-column:2}
@@ -952,9 +907,7 @@ section{position:relative}
   .jo-role{margin-top:calc(var(--bu)*1.2)}
   .jo-lede{margin-top:calc(var(--bu)*1);font-size:.97rem;line-height:1.5}
   .jo-sign{margin-top:calc(var(--bu)*1)}
-  .jo-hint{margin-top:calc(var(--ken)*.24)}
-  .jo-thumb{height:88px}
-  .shakkei{aspect-ratio:4/1.72}
+  .shakkei{aspect-ratio:1/1}
   .seal{--seal-size:46px}
 }
 
@@ -964,8 +917,7 @@ section{position:relative}
   .jo-name{font-size:2.3rem}
   .jo-lede{font-size:.92rem;margin-top:calc(var(--bu)*.8)}
   .jo-sign{margin-top:calc(var(--bu)*.8)}
-  .shakkei{aspect-ratio:4/1.24}
-  .jo-thumb{height:74px}
+  .shakkei{aspect-ratio:1/1}
   .seal{--seal-size:42px}
 }
 
@@ -977,10 +929,7 @@ section{position:relative}
   .jo-role{margin-top:calc(var(--bu)*1.3)}
   .jo-lede{margin-top:calc(var(--bu)*1.1);font-size:1.02rem}
   .jo-sign{margin-top:calc(var(--bu)*1.2)}
-  .jo-hint{margin-top:calc(var(--ken)*.3)}
-  .jo-thumb{height:104px}
-  .jo-thumb-k{display:none}
-  .shakkei{aspect-ratio:4/1.8}
+  .shakkei{aspect-ratio:1/1}
   .seal{--seal-size:54px}
 }
 
@@ -998,13 +947,13 @@ section{position:relative}
    field-tinted colour is re-declared: inheriting them onto white paper dropped
    secondary text to below 2:1. */
 @media print{
-  .rail,.paper-tooth,.paper-fibre,.module-lines,.tatami-weave,.jo-hint,
+  .rail,.paper-tooth,.paper-fibre,.module-lines,.tatami-weave,
   .fusuma-pull,.skip{display:none}
   body{background:#fff;color:#000}
   .field-ai,.field-tatami,.field-ink,.field-paper{
     background:#fff;color:#000;box-shadow:none}
   .field-paper .quiet,.field-ai .quiet,.field-tatami .quiet,.field-ink .quiet,
-  .jo-sign-txt,.shakkei-cap,.mark-role,.jo-hint-lbl,.cx-k,.colophon{color:#333}
+  .jo-sign-txt,.shakkei-cap,.mark-role,.cx-k,.colophon{color:#333}
   .field-ai .plate,.plate,.contacts,.dl-ledger{box-shadow:inset 0 0 0 1px #999}
   .plate-row,.dl-row,.contacts a,.contacts .cx{box-shadow:inset 0 -1px 0 #bbb}
   .course{box-shadow:inset 0 -1px 0 #bbb}
