@@ -84,16 +84,17 @@
           <span class="ln">Iqra</span>
           <span class="ln ln2">Idrishi</span>
         </h1>
+        <span class="jo-accent settle" aria-hidden="true"></span>
 
         <p class="jo-lede lede settle settle-d1">
-  Hi, I'm Iqra, a UI/UX Designer who loves turning ideas into simple, intuitive,
+  Hi, I'm Iqra ,a UI/UX Designer who loves turning ideas into simple, intuitive,
   and visually engaging digital experiences.
   I'm passionate about understanding how people interact with products
   and creating designs that feel effortless to use.
 </p>
 
         <p class="jo-explore settle settle-d2">
-          UI/UX Design &nbsp;•&nbsp; Interaction Design &nbsp;•&nbsp; Visual Design
+          Currently exploring &nbsp;•&nbsp; UI/UX Design &nbsp;•&nbsp; Interaction Design &nbsp;•&nbsp; Visual Design
         </p>
 
         <div class="jo-sign settle settle-d3">
@@ -133,7 +134,34 @@
         </div>
       </div>
 
-      <p class="jo-tate tate" aria-hidden="true">設計の仕事</p>
+      <div class="jo-tate-col">
+        <p class="jo-tate tate" aria-hidden="true">設計の仕事</p>
+        <!-- a second, smaller pressing of the same seal, set below the tategaki column —
+             the mark a scroll carries in its margin, not just at the signature line -->
+        <div class="jo-tate-seal settle settle-d2" aria-hidden="true">
+          <span class="jo-tate-rule"></span>
+          <svg class="seal" viewBox="0 0 100 100" focusable="false" style="--seal-size:26px">
+            <g filter="url(#seal-cut)">
+              <path fill="currentColor" d="M7 6 L93 5 L94 94 L6 93 Z"/>
+              <g fill="#e6e1d3">
+                <rect x="15" y="14" width="70" height="4.4"/>
+                <rect x="15" y="81.5" width="70" height="4.4"/>
+                <rect x="15" y="14" width="4.4" height="72"/>
+                <rect x="80.6" y="14" width="4.4" height="72"/>
+                <rect x="47.8" y="18.4" width="4.4" height="63.1"/>
+                <rect x="19.4" y="47.8" width="61.2" height="4.4"/>
+              </g>
+              <g fill="#e6e1d3" font-family="YujiLatin,serif" font-size="21"
+                 text-anchor="middle" dominant-baseline="central">
+                <text x="33.6" y="34">I</text>
+                <text x="66.4" y="34">Q</text>
+                <text x="33.6" y="66">R</text>
+                <text x="66.4" y="66">A</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
 
       <!-- shakkei: borrowed scenery. The landscape is seen THROUGH the lattice, which is
            what makes it architecture rather than a background image. -->
@@ -154,6 +182,41 @@
       </div>
 
     </div>
+
+    <!-- The module continues past the fold. This was a cover-cropped strip, which sliced
+         each screenshot into a meaningless sliver of its own nav bar ("bout Us Features
+         Pricing") and read as broken overflow. Now every thumbnail is whole, and each one
+         is a real link, so a recruiter can see all four projects and jump to any of them
+         without scrolling. -->
+    <nav class="jo-hint settle settle-d2" aria-label="The four projects">
+      <p class="jo-hint-lbl">Four projects below</p>
+      <ul class="jo-index">
+        <li><a href="#p1">
+          <span class="jo-thumb"><img src="assets/work/nepdine-landing.webp"
+            width="1799" height="1077" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">Nepdine</span>
+          <span class="jo-thumb-k">Restaurant system</span>
+        </a></li>
+        <li><a href="#p2">
+          <span class="jo-thumb"><img src="assets/work/movie-detail.webp"
+            width="401" height="779" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">Movie Reservation</span>
+          <span class="jo-thumb-k">Mobile app</span>
+        </a></li>
+        <li><a href="#p3">
+          <span class="jo-thumb"><img src="assets/work/wishkart-home.webp"
+            width="317" height="461" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">WishKart</span>
+          <span class="jo-thumb-k">Greeting cards</span>
+        </a></li>
+        <li><a href="#p4">
+          <span class="jo-thumb"><img src="assets/work/dualsense-card.jpg"
+            width="772" height="490" alt="" loading="eager" decoding="async"></span>
+          <span class="jo-thumb-n">DualSense</span>
+          <span class="jo-thumb-k">Product study</span>
+        </a></li>
+      </ul>
+    </nav>
   </div>
 </section>
 
@@ -165,12 +228,11 @@
 
     <div class="head settle">
       <div class="head-row">
-        <h2 id="work-h">Featured Projects</h2>
-        
+        <h2 id="work-h">Selected work</h2>
+        <span class="head-jp" aria-hidden="true">作品</span>
       </div>
-      <p class="quiet">A collection of interfaces, ideas, and digital experiences I've designed with purpose. 
-       From simplifying complex workflows to creating engaging user experiences, each project reflects my 
-       approach to thoughtful and intuitive design.</p>
+      <p class="quiet">Four projects. Two shipped as team products, two self-directed. Every
+        plate below is my own screen — role and dates are on the record beside it.</p>
     </div>
 
     <div class="work">
@@ -683,18 +745,20 @@ As the UI/UX designer, I focused on creating a clean, efficient, and easy-to-nav
     <div class="hito settle">
       <div class="hito-left">
         <div class="hito-prose prose">
-          <p>I’m a computer science undergraduate who found my way into design. I like working where
-           technology and creativity meet , understanding what can actually be built while thinking 
-           carefully about how it should feel to use.</p>
-          <p>I came to interface design through drawing. I paint and sketch, and that practice taught
-           me to pay attention to small details, composition, and the patience it takes to make an idea
-           work. I bring the same mindset to digital products: explore, refine, simplify, and keep going
-           until the pieces feel right.</p>
-          <p>Most of my work so far has been about making everyday experiences easier to navigate from 
-           managing a busy restaurant to booking a movie ticket. I’m especially interested in the difficult
-           screens: the ones with real problems to solve, where good design has to be both useful and thoughtful.</p>
-          <p>I’m currently in my third year at St. Xavier’s College, Kathmandu, looking for opportunities to 
-           work on real products, learn from people who challenge my thinking, and grow as a designer.</p>
+          <p>I am a computer science undergraduate who designs. That combination is the useful
+            part: I can sit in a conversation about what is actually buildable and not lose the
+            argument about what it should feel like.</p>
+          <p>I came to interface design through drawing. I paint and sketch, and the habit that
+            carried over was not style — it was patience with the boring middle of a piece, the
+            part where you have committed to a composition and have to make it work. Screens have
+            that same middle.</p>
+          <p>Most of my work so far has been on products for people doing a job under some kind of
+            pressure: a restaurant during service, someone booking before the film starts. I would
+            rather design the difficult screen than the beautiful one, though I would like the
+            difficult screen to also be beautiful.</p>
+          <p>I am in my third year at St. Xavier's in Kathmandu, looking for an internship or
+            junior role where I can work on real products with people who will tell me when I am
+            wrong.</p>
         </div>
 
         <div class="sketchbook">
@@ -773,7 +837,7 @@ As the UI/UX designer, I focused on creating a clean, efficient, and easy-to-nav
           If you are hiring a designer,<br>I would like to talk.
         </h2>
         <p class="kyu-sub quiet settle settle-d2">Open to a UI/UX internship or junior role.
-          Happy to walk through any of the projects above, including the parts that did not
+          Happy to walk through any of the four projects above, including the parts that did not
           work.</p>
 
         <div class="rakkan settle settle-d2">
@@ -836,8 +900,10 @@ As the UI/UX designer, I focused on creating a clean, efficient, and easy-to-nav
 
     <hr class="rule-kumiko" style="margin-top:calc(var(--ken)*1.1)">
     <div class="colophon quiet">
-       
-       
+      <p>© <span class="num">2026</span> Iqra Idrishi. Project screenshots are her own work.</p>
+      <p>Built as a Japanese room: the <span lang="ja">kiwari</span> module drawn, every
+        panel framed in <span lang="ja">shoji</span> lattice, one
+        <span lang="ja">tokonoma</span> alcove per project.</p>
     </div>
   </div>
 </footer>
