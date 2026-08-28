@@ -1,4 +1,4 @@
- /* ═══════════════════════════════════════════════════════════════════════════
+  /* ═══════════════════════════════════════════════════════════════════════════
    IQRA IDRISHI — PORTFOLIO
    Visual world: Japanese architectural planning. The kiwari module is drawn,
    not implied; the shoji lattice is the component grammar; the tokonoma alcove
@@ -961,4 +961,182 @@ section{position:relative}
   .fusuma-inner{transform:none!important;opacity:1!important;overflow:visible}
   .piece,.hito,.kyu-in{break-inside:avoid}
   a{text-decoration:underline}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REFERENCE HERO — editorial desktop composition
+   The navigation above is intentionally untouched.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width:901px){
+  .jo{
+    height:calc(100svh - var(--ken)*.82);
+    min-height:0;
+    padding:0;
+    display:grid;
+    align-items:center;
+    overflow:hidden;
+  }
+
+  .jo > .bay{
+    width:min(100% - clamp(40px,7.6vw,116px),1400px);
+    height:100%;
+    display:flex;
+    align-items:center;
+  }
+
+  .jo-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1.08fr) minmax(500px,.92fr);
+    gap:clamp(42px,5.2vw,82px);
+    align-items:center;
+  }
+
+  /* Large editorial name, matching the reference hierarchy. */
+  .jo-name{
+    font-size:clamp(4.7rem,8.35vw,8rem);
+    line-height:.9;
+    letter-spacing:-.045em;
+    max-width:620px;
+  }
+
+  /* Small vermilion editorial mark under the name. */
+  .jo-name::after{
+    content:"";
+    display:block;
+    width:136px;
+    height:2px;
+    margin-top:clamp(28px,2.3vw,36px);
+    background:
+      radial-gradient(circle at 100% 50%,var(--beni) 0 2px,transparent 2.5px),
+      linear-gradient(90deg,var(--beni) 0 64%,
+        color-mix(in srgb,var(--beni) 28%,transparent) 64% 100%);
+  }
+
+  .jo-lede{
+    max-width:535px;
+    margin-top:clamp(28px,2.2vw,36px);
+    font-size:clamp(1.08rem,1.32vw,1.28rem);
+    line-height:1.72;
+  }
+
+  .jo-explore{
+    margin-top:clamp(34px,3vw,46px);
+    font-size:clamp(.72rem,.78vw,.82rem);
+    letter-spacing:.13em;
+  }
+
+  .jo-sign{
+    margin-top:clamp(30px,2.8vw,44px);
+    gap:18px;
+  }
+
+  .jo-sign-txt{
+    font-size:.9rem;
+    line-height:1.65;
+  }
+
+  /* Move the Japanese vertical text to the far-right margin like the reference. */
+  .jo-tate{
+    position:absolute;
+    z-index:8;
+    top:50%;
+    right:clamp(18px,2.1vw,32px);
+    transform:translateY(-50%);
+    max-height:none;
+    font-size:clamp(.82rem,1vw,1rem);
+    letter-spacing:.32em;
+  }
+
+  /* Portrait frame instead of the current square frame. */
+  .shakkei{
+    width:min(100%,585px);
+    height:min(80vh,642px);
+    aspect-ratio:auto;
+    justify-self:end;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb,var(--kigara) 46%,transparent),
+      inset 6px 8px 30px -10px rgb(23 19 16/.4),
+      0 22px 50px -30px rgb(23 19 16/.55);
+  }
+
+  .shakkei-grid{
+    background-image:
+      linear-gradient(180deg,transparent calc(100% - 9px),
+        color-mix(in srgb,var(--kigara) 76%,transparent) calc(100% - 9px)),
+      repeating-linear-gradient(90deg,var(--mun) 0 1.6px,
+        transparent 1.6px calc(100%/7)),
+      repeating-linear-gradient(180deg,var(--mun) 0 1.6px,
+        transparent 1.6px calc(100%/6));
+  }
+
+  .shakkei-land{
+    background-size:148% auto;
+    background-position:center 88%;
+  }
+}
+
+/* 1366×768 and other short laptop screens: scale the hero down instead
+   of creating a second viewport. */
+@media screen and (min-width:901px) and (max-height:830px){
+  .jo > .bay{
+    width:min(100% - 72px,1280px);
+  }
+
+  .jo-grid{
+    grid-template-columns:minmax(0,1fr) minmax(430px,.82fr);
+    gap:44px;
+  }
+
+  .jo-name{
+    font-size:clamp(4rem,7.4vw,6.3rem);
+  }
+
+  .jo-name::after{
+    margin-top:24px;
+  }
+
+  .jo-lede{
+    margin-top:24px;
+    font-size:1.05rem;
+    max-width:500px;
+  }
+
+  .jo-explore{
+    margin-top:26px;
+  }
+
+  .jo-sign{
+    margin-top:25px;
+  }
+
+  .shakkei{
+    width:min(100%,500px);
+    height:min(76vh,560px);
+  }
+}
+
+/* Tablet/mobile: keep the existing navigation behavior and stack the hero. */
+@media screen and (max-width:900px){
+  .jo{
+    height:auto;
+    min-height:calc(100svh - var(--ken)*.82);
+  }
+
+  .jo-name::after{
+    content:"";
+    display:block;
+    width:110px;
+    height:2px;
+    margin-top:24px;
+    background:
+      radial-gradient(circle at 100% 50%,var(--beni) 0 2px,transparent 2.5px),
+      linear-gradient(90deg,var(--beni) 0 64%,
+        color-mix(in srgb,var(--beni) 28%,transparent) 64% 100%);
+  }
+
+  .jo-tate{
+    display:none;
+  }
 }
