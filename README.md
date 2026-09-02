@@ -2,9 +2,9 @@
 
 Live: **https://abhishekbarali.github.io/iqra-idrishi/**
 
-Portfolio for Iqra Idrishi, a UI/UX designer in Kathmandu. Four projects: Nepdine (restaurant
-management system), a movie reservation app, WishKart (greeting cards) and a DualSense product
-card study.
+Portfolio for Iqra Idrishi, a UI/UX designer in Kathmandu. Five projects: Nepdine (restaurant
+management system), a movie reservation app, WishKart (greeting cards), a pizza ordering website
+and a DualSense product card study, plus a section of Illustrator illustration work.
 
 Plain HTML, CSS and JavaScript. No build step, no dependencies — open `index.html` and it
 works, including offline.
@@ -13,7 +13,7 @@ works, including offline.
 index.html          the whole page
 assets/site.css     all styling
 assets/fonts/       10 self-hosted subsetted woff2 files (~240 KB)
-assets/work/        project screenshots
+assets/work/        project screenshots and illustration SVGs
 assets/ink/         hand-authored SVG ornament
 ```
 
@@ -27,6 +27,8 @@ Everything you are likely to change is in `index.html`, in reading order:
 | A project title or description | `class="piece-title"` / `class="piece-one"` |
 | Role, dates, tools | `class="plate"` |
 | A case study | `class="fusuma-body"` |
+| The illustration plates | `class="gaku"` |
+| The five process steps | `class="courses"` |
 | The About text | `class="hito-prose"` |
 | Education and certificates | `class="dl-ledger"` |
 | Contact details | `class="contacts"` |

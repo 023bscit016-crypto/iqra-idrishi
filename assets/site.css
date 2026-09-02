@@ -468,6 +468,11 @@ section{position:relative}
 .head-jp{font-family:var(--face-jp);font-weight:700;font-size:clamp(2rem,3.6vw,3.1rem);
   line-height:1;letter-spacing:.16em;opacity:.3}
 .head p{max-width:52ch}
+/* This is the one section heading long enough to wrap. Left to flex-wrap it dropped
+   its kanji onto a line of its own, reading as a stray glyph rather than a mark on
+   the heading, so the row holds and the heading wraps inside itself instead. */
+#illus .head-row{flex-wrap:nowrap}
+#illus .head-row h2{min-width:0}
 
 /* ── WORK ────────────────────────────────────────────────────────────────── */
 .work{display:grid;gap:calc(var(--ken)*1.5)}
@@ -486,15 +491,77 @@ section{position:relative}
 }
 .piece-title{font-family:var(--face-display);font-weight:700;
   font-size:clamp(1.9rem,4vw,3.3rem);line-height:1;letter-spacing:-.022em}
-.piece-one{font-size:clamp(1.1rem,1.6vw,1.36rem);line-height:1.6;max-width:44ch}
 
-/* the four projects do NOT share one card shape; each plate is composed for the
-   artefact it holds, and their real pixel ratios drive the layout */
-.piece-body{display:grid;gap:calc(var(--han)*1.1);align-items:start}
-.piece-wide .piece-body{grid-template-columns:minmax(0,1.62fr) minmax(0,1fr)}
-.piece-tall .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)}
-.piece-trio .piece-body{grid-template-columns:minmax(0,1.42fr) minmax(0,1fr)}
-.piece-tight .piece-body{grid-template-columns:minmax(0,1.18fr) minmax(0,1fr)}
+/* The title row holds the visit link out to the far edge, so the one thing a
+   visitor is most likely to click sits on the same baseline as the project name
+   instead of being buried under the fact plate. The row gap is the tighter of the
+   two: when the pill wraps under a long title, a full --han of air read as a
+   detached button. */
+.piece-head-in{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:calc(var(--bu)*1.7) var(--han);flex-wrap:wrap}
+.piece-name{display:grid;gap:calc(var(--bu)*1.1);min-width:0}
+
+/* Reachable by a screen reader, absent from the page. Five links reading only
+   "View in Figma" are ambiguous when tabbed through out of context, so each one
+   carries its project name and a new-tab warning here. The visible words stay a
+   leading substring of the full name, which is what WCAG 2.5.3 asks for. */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ── THE PIECE BODY ──────────────────────────────────────────────────────── */
+/* One composition, repeated for every project. The left column carries the whole
+   written argument top to bottom (standfirst prose, then the ruled fact plate);
+   the right column carries the capture, spanning both rows.
+   Before this, the prose sat in a full-width row ABOVE the body at a 44ch measure
+   inside a 1500px band: half the width was empty, and the capture was pushed down
+   into a row of its own, reading as a detached image with a hole beside it. There
+   is now one field, and the fact plate is bottom-set so the written column and the
+   capture terminate on the same line. */
+.piece-body{
+  display:grid;
+  gap:calc(var(--han)*1.15) calc(var(--ken)*.82);
+  grid-template-rows:auto 1fr;
+  grid-template-areas:"say art" "fact art";
+}
+.piece-say{grid-area:say;display:grid;gap:calc(var(--bu)*1.6);align-content:start}
+/* Bottom-set. When the capture is the taller of the two, the fact plate drops to sit
+   on the capture's bottom edge, so the written column has a real bottom rule instead
+   of trailing off and leaving a hole under it.
+   The cap keeps the plate at a table width rather than a column width: stretched to
+   700-900px, a two-word value like "Figma" sat alone in a half-empty row, and the
+   plate read wider than every other plate on the page. */
+.piece-fact{grid-area:fact;align-self:end;max-width:39rem}
+/* Stretched. When the WRITTEN column is the taller of the two, the alcove grows to
+   the same height and the capture is matted inside it, centred. An alcove deeper
+   than the object it holds is what a tokonoma actually is, and matting a print
+   inside its frame is normal; a frame that stops short of the column beside it is
+   just a hole. Nothing is cropped and nothing is stretched: the capture keeps its
+   own pixels and the ground moves. */
+.piece-art{grid-area:art;align-self:stretch;min-width:0;display:grid}
+.piece-art>.alcove{display:grid;align-content:center;min-height:0}
+/* 62ch is the ceiling, not the target. In most of the five the grid sets the measure
+   and the cap never binds; it exists so the two widest columns cannot run a
+   standfirst out to eighty characters. */
+.piece-one{font-size:clamp(1.06rem,1.3vw,1.25rem);line-height:1.68;max-width:62ch}
+
+/* Ratios are read off each capture's real pixel width so that nothing is upscaled:
+   a 782px landing (wide), a four-phone rank that needs room (tall), a three-shot row
+   (trio), a 772px card (tight) and a 533px portrait capture (shot), which is the one
+   artefact narrower than the words beside it and so takes the smaller share. */
+.piece-wide .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+.piece-tall .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)}
+.piece-trio .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.8fr)}
+.piece-tight .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+.piece-shot .piece-body{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+/* Two captures are taller than the words beside them once their column is wide enough
+   for the standfirst to fill: the portrait pizza capture, and the DualSense card,
+   whose fact plate is short. Both are sized by the height of the written column
+   rather than by the column width, and matted left and right inside a full-width
+   alcove. Widening either to fill its alcove pushes the frame well below the fact
+   plate and reopens exactly the hole this layout closes. The matting is the same
+   device the other three use, turned ninety degrees. */
+.piece-shot .alcove-plate{width:auto;max-width:min(100%,400px);margin-inline:auto}
+.piece-tight .alcove-plate{width:auto;max-width:min(100%,600px);margin-inline:auto}
 
 /* the phone rank: columns sized to the captures' real resolutions, so the two
    lower-resolution screens are never upscaled into softness */
@@ -516,6 +583,26 @@ section{position:relative}
 .trio figure{margin:0}
 .trio img{width:100%;height:auto;
   box-shadow:0 10px 22px -14px rgb(23 19 16/.5)}
+
+/* ── GAKU: THE ILLUSTRATION PLATES ───────────────────────────────────────── */
+/* 額, a hung frame. Four drawings with four different grounds, so each keeps its own
+   alcove instead of being butted into one strip that would read as a single broken
+   image. Every plate is boxed to the same 3:4 opening and the artwork is CONTAINED,
+   never cropped — trimming a drawing to tidy a row destroys the work the row exists
+   to show, which is the same rule the project captures follow. */
+.gaku{display:grid;gap:var(--han);grid-template-columns:repeat(4,minmax(0,1fr))}
+.gaku>li{display:grid;gap:calc(var(--bu)*.95);align-content:start}
+.gaku .alcove-plate{
+  aspect-ratio:3/4;object-fit:contain;object-position:50% 50%;
+}
+.gaku-cap{font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;
+  line-height:1.55}
+@media (max-width:1000px){
+  .gaku{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:430px){
+  .gaku{grid-template-columns:minmax(0,1fr)}
+}
 
 /* ── LATTICE FRAME ───────────────────────────────────────────────────────── */
 /* The structural frame around a panel is joinery, so it is drawn as lattice. The rules
@@ -559,6 +646,43 @@ section{position:relative}
 .plate-v{font-size:var(--t-sm);line-height:1.56;
   font-variant-numeric:tabular-nums lining-nums}
 .plate-v .jpk{font-family:var(--face-jp);opacity:.55;margin-left:.5em;font-size:.92em}
+
+/* ── THE VISIT LINK ──────────────────────────────────────────────────────── */
+/* The one outbound target per project. It borrows the fusuma pull's frame so the
+   two controls on a piece read as one pair, and it is filled rather than outlined
+   so it stays the louder of the two: the case study is optional reading, the live
+   work is the thing a visitor came for. Underline is omitted deliberately; the
+   frame plus the travelling arrow already carry the affordance.
+   Ink is aizuri-lo, not aizuri: on the kigara-hi fill, aizuri measures 3.8:1, and a
+   12px bold label is normal-size text under WCAG, so it needs 4.5:1. aizuri-lo
+   gives 4.7:1. The hover state lightens rather than darkens for the same reason —
+   darkening to kigara dropped it to 3.2:1. */
+.piece-visit{
+  display:inline-flex;align-items:center;gap:.8em;flex:none;
+  padding:calc(var(--bu)*.82) calc(var(--bu)*1.35);
+  font-size:var(--t-label);letter-spacing:.17em;text-transform:uppercase;
+  font-weight:700;text-decoration:none;
+  color:var(--aizuri-lo);background:var(--kigara-hi);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--kigara) 70%,transparent),
+             0 10px 22px -16px rgb(0 0 0/.7);
+  transition:background-color .2s ease;
+}
+.piece-visit .arrow{
+  position:relative;width:18px;height:1px;flex:none;background:currentColor;
+  transition:transform .2s ease;
+}
+.piece-visit .arrow::after{
+  content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;
+  border-top:1px solid currentColor;border-right:1px solid currentColor;
+  transform:rotate(45deg);transform-origin:100% 0;
+}
+.piece-visit:hover,.piece-visit:focus-visible{
+  background:color-mix(in srgb,var(--kigara-hi) 80%,var(--shoji));
+}
+.piece-visit:hover .arrow,.piece-visit:focus-visible .arrow{transform:translateX(5px)}
+@media (prefers-reduced-motion:reduce){
+  .piece-visit,.piece-visit .arrow{transition:none}
+}
 
 /* ── THE FUSUMA ──────────────────────────────────────────────────────────── */
 /* The signature interaction. A sliding panel that travels on the module's own
@@ -611,6 +735,22 @@ section{position:relative}
   align-items:start;
 }
 .fusuma-body>.draft{grid-column:1/-1}
+/* SPLIT: for a case whose middle block is a long list and whose outer two are short
+   prose. Auto-fit rows left a dead quarter-column under the first block, because a
+   grid row is as tall as its tallest cell. Here the list takes the right column for
+   both rows, so the closing block rides straight up under the opening one and reading
+   order (open → decisions → close) is untouched. Assumes exactly three children. */
+.fusuma-body.split{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-areas:"a b" "c b";
+  align-content:start;
+}
+.fusuma-body.split>:nth-child(1){grid-area:a}
+.fusuma-body.split>:nth-child(2){grid-area:b}
+.fusuma-body.split>:nth-child(3){grid-area:c}
+@media (max-width:900px){
+  .fusuma-body.split{grid-template-columns:minmax(0,1fr);grid-template-areas:"a" "b" "c"}
+}
 .fusuma-body h4{
   font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-weight:700;
   margin-bottom:.6em;padding-bottom:.5em;
@@ -620,11 +760,18 @@ section{position:relative}
   background-repeat:no-repeat;background-position:0 100%;background-size:100% 1.5px;
 }
 .fusuma-body p{font-size:var(--t-sm);line-height:1.74;max-width:64ch}
-.fusuma-body ul{display:grid;gap:.62em;font-size:var(--t-sm);max-width:64ch}
-.fusuma-body li{display:grid;grid-template-columns:auto 1fr;gap:.7em;line-height:1.6}
+/* Consecutive paragraphs in a case had no separation at all, so two arguments ran
+   together as one block of text. .prose carries this rule; the case body never did. */
+.fusuma-body p+p{margin-top:1em}
+.fusuma-body ul{display:grid;gap:.85em;font-size:var(--t-sm);max-width:64ch}
+/* Hanging indent, NOT a grid li. A grid li promotes every inline child to its own
+   grid item, which tore a leading <b> out of its own sentence and stacked it in a
+   second column. The tick is absolute so the sentence stays one text flow. */
+.fusuma-body li{position:relative;padding-left:calc(11px + .8em);line-height:1.68}
 /* the list bullet is a drawn kumiko tick, not a unicode glyph */
 .fusuma-body li::before{
-  content:"";width:11px;height:1px;margin-top:.78em;
+  content:"";position:absolute;left:0;top:.82em;
+  width:11px;height:1px;
   background:currentColor;opacity:.5;
 }
 .draft{
@@ -741,8 +888,8 @@ section{position:relative}
 .dl-row dd{margin:0;font-size:var(--t-sm);line-height:1.62}
 .dl-row dd b{font-weight:700}
 .dl-row ul{display:grid;gap:.42em}
-.dl-row li{display:grid;grid-template-columns:auto 1fr;gap:.65em;line-height:1.55}
-.dl-row li::before{content:"";width:9px;height:1px;margin-top:.72em;
+.dl-row li{position:relative;padding-left:calc(9px + .65em);line-height:1.55}
+.dl-row li::before{content:"";position:absolute;left:0;top:.72em;width:9px;height:1px;
   background:currentColor;opacity:.45}
 
 /* ── CLOSE (ink field) ───────────────────────────────────────────────────── */
@@ -832,8 +979,21 @@ section{position:relative}
 }
 
 @media (max-width:1180px){
+  /* One column: prose, then the capture, then the facts. The capture is deliberately
+     kept ABOVE the fact plate here, because on a narrow screen a visitor should meet
+     the work before the metadata. */
   .piece-wide .piece-body,.piece-tall .piece-body,
-  .piece-trio .piece-body,.piece-tight .piece-body{grid-template-columns:minmax(0,1fr)}
+  .piece-trio .piece-body,.piece-tight .piece-body,
+  .piece-shot .piece-body{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto;
+    grid-template-areas:"say" "art" "fact";
+  }
+  .piece-fact{align-self:start}
+  /* Stacked, a capture has the full column to itself and no longer needs to be sized
+     against a written column beside it. */
+  .piece-shot .alcove-plate{max-width:min(100%,533px)}
+  .piece-tight .alcove-plate{max-width:min(100%,772px)}
   .hito,.kyu-in{grid-template-columns:minmax(0,1fr)}
   .kyu-in{align-items:start}
 }
@@ -860,6 +1020,11 @@ section{position:relative}
   .course-o{grid-column:2;text-align:left;padding-top:.7em}
 }
 @media (max-width:680px){
+  /* On a phone the pill stops competing with the title for the row. Left to wrap, it
+     landed at the right edge behind short titles and at the left edge behind long ones,
+     because a single item on a wrapped flex line ignores space-between. Stacked, it
+     always sits under the kind line on the text's own left margin. */
+  .piece-head-in{flex-direction:column;align-items:flex-start}
   /* The label used to be clipped to 1px here, leaving four unlabelled kanji: a screen
      reader heard them, but a sighted recruiter on a phone had no way to tell which one
      was contact. Cramming words beside the wordmark forced them to 9px, under the
