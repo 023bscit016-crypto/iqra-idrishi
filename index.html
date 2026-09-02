@@ -265,9 +265,13 @@ Nepdine enough to hand it their floor?</p>
 <div class="piece-head">
 <h3 class="piece-title" id="p2">Movie Reservation</h3>
 <p class="piece-kind">Mobile app · UI and prototype</p>
-<p class="piece-one">Booking a seat is a spatial problem on the smallest canvas you
-get. The seat map has to be readable at a glance, thumb-reachable, and honest about
-what is already gone.</p>
+<p class="piece-one">A mobile cinema booking experience designed to make the journey from
+<b>finding a movie to holding a ticket</b> feel simple and effortless. The app brings
+browsing, showtime selection, seat booking, and digital tickets into one streamlined
+flow, with particular attention to making the seat-selection experience clear and easy
+to navigate on a small screen.</p>
+<p class="piece-one">The goal was to create an interface that feels <b>immersive enough
+for discovering movies, but focused enough to make booking quick and intuitive.</b></p>
 </div>
 <div class="piece-body">
 <div>
@@ -327,26 +331,32 @@ date, time, row and seat, above a barcode.">
 <div class="fusuma-inner"><div class="fusuma-body">
 <div>
 <h4>The hard screen</h4>
-<p>Everything in this app is easy except seat selection. It is a dense
-spatial map with three states that must be distinguishable instantly,
-inside a thumb's reach, on a surface where the poster art is also
-shouting. Get it wrong and people pick the wrong seat and blame you at
-the door.</p>
+<p>Most of the app is straightforward. Seat selection is where the experience gets
+complicated.</p>
+<p>A cinema layout is a dense spatial map with multiple seat states that need to be
+understood at a glance, while still being easy to navigate on a small screen. At the
+same time, the movie artwork and visual elements are competing for attention.</p>
+<p>The challenge was to make the seat map feel clear, immediate, and trustworthy — so
+users can confidently choose a seat without second-guessing their selection.</p>
 </div>
 <div>
-<h4>Decisions</h4>
-<ul>
-<li>Dark surface throughout, so the poster carries all the colour and the
-seat map stays the only high-contrast information on screen.</li>
-<li>Three seat states separated by hue and fill, not by shade alone, so
-the map still reads for someone who cannot rely on colour.</li>
-<li>The curved screen line at the top orients the whole map instantly —
-you know which way you will be facing before you read a single label.</li>
-<li>Summary bar pinned to the bottom with date, section, seat and total,
-so the commitment is always visible next to the Buy control.</li>
-<li>The ticket screen is designed as the object you hold up at the door:
-barcode, seat, time, nothing competing.</li>
-</ul>
+<h4>Design decisions</h4>
+<p><b>A dark visual foundation.</b>
+I kept the interface dark throughout, allowing the movie artwork to bring in colour
+while keeping the seat map focused and easy to scan.</p>
+<p><b>Clear seat states.</b>
+Available, selected, and unavailable seats are visually distinct through colour and
+fill, with enough contrast that the difference isn't dependent on colour alone.</p>
+<p><b>An intuitive cinema layout.</b>
+The curved screen indicator gives users an immediate sense of orientation, making it
+clear which direction they'll be facing before they start choosing seats.</p>
+<p><b>A persistent booking summary.</b>
+The bottom summary keeps the important details — date, section, seats, and total —
+visible alongside the purchase action, so users always know what they're committing to.</p>
+<p><b>A ticket designed for the real world.</b>
+The final ticket screen strips everything back to what matters at the entrance:
+barcode, movie, time, and seat. Nothing competes with the information the user needs
+to show at the door.</p>
 </div>
 <div>
 <h4>What I would change</h4>
@@ -364,9 +374,10 @@ and less interesting to look at, and I now think easier wins here.</p>
 <div class="piece-head">
 <h3 class="piece-title" id="p3">WishKart</h3>
 <p class="piece-kind">Greeting-card platform · web</p>
-<p class="piece-one">People do not arrive wanting a template. They arrive because
-someone they love has a birthday tomorrow. The navigation should start where they
-actually are.</p>
+<p class="piece-one">A greeting card is rarely the reason someone opens a website. They
+arrive with a person, an occasion, and a feeling in mind. WishKart was designed around
+that moment — making it easy to find the right card, personalize it, and send
+something meaningful without getting lost in endless templates.</p>
 </div>
 <div class="piece-body">
 <div class="alcove">
@@ -420,30 +431,36 @@ content, not real quotes</dd></div>
 <div class="fusuma-inner"><div class="fusuma-body">
 <div>
 <h4>The job</h4>
-<p>This is an emotional task with a hard time limit. Someone is making a
-card for a proposal or a graduation, they are in a particular mood, and
-they want to be finished in about two minutes. The interface has to match
-the mood without ever becoming the reason it took longer.</p>
+<p>Choosing a greeting card is an emotional task, but it is also a quick one. Someone
+might be making a card for a birthday, graduation, or proposal, already knowing who it
+is for and why they are making it. They should be able to find a direction, make it
+personal, and be done in a couple of minutes. The interface should support the
+feeling, not get in its way.</p>
 </div>
 <div>
 <h4>Decisions</h4>
 <ul>
-<li>Occasion-first navigation instead of template-first. People know the
-occasion before they know what they want it to look like, so the first
-choice on the page is the one they have already made.</li>
-<li>Illustration rather than photography, because a photographed couple
-is somebody else's proposal and an illustrated one can be theirs.</li>
-<li>The whole flow is three steps deep at most: occasion, template,
-personalise. No account required before the fun part.</li>
-<li>Warm gradient held to the marketing surface. The editor itself needs
-to be quiet so the card being made is the loudest thing on screen.</li>
+<li><b>Occasion first navigation.</b> Instead of asking people to browse through
+templates, WishKart starts with what they already know: the occasion. From there,
+the choices become more specific and easier to make.</li>
+<li><b>Illustration over photography.</b> Photographs can feel specific to someone
+else's story. Illustrations leave room for the person making the card to imagine
+their own.</li>
+<li><b>A three step flow.</b> Occasion → template → personalise. The path stays
+short and focused, with no account or unnecessary setup before users can start
+creating.</li>
+<li><b>A quiet editor.</b> The warm gradient belongs to the marketing experience.
+Once someone starts creating, the interface becomes deliberately quieter so the card
+itself becomes the focus.</li>
 </ul>
 </div>
 <div>
 <h4>What I would change</h4>
-<p>The occasion grid is six equal tiles, which quietly claims all six
-matter equally. Birthdays are almost certainly most of the traffic, and
-the layout should say so.</p>
+<p>The occasion grid currently gives every category the same visual weight. That
+makes the interface feel balanced, but not necessarily useful. If birthdays account
+for the majority of visits, they should have a stronger presence in the hierarchy. I
+would rethink the grid to reflect actual usage rather than treating every occasion as
+equally important.</p>
 </div>
 </div></div>
 </div>
@@ -455,8 +472,9 @@ the layout should say so.</p>
 <div class="piece-head">
 <h3 class="piece-title" id="p4">DualSense</h3>
 <p class="piece-kind">Self-directed study · product card</p>
-<p class="piece-one">An exercise in how far an object can push into a frame before
-the price and the primary action lose their place in the hierarchy.</p>
+<p class="piece-one">A product card designed in Figma around the PlayStation DualSense
+controller. The focus was on creating a strong product presence while keeping the
+layout clean, balanced, and easy to scan.</p>
 </div>
 <div class="piece-body">
 <div class="alcove">
@@ -481,41 +499,6 @@ Add to cart and Add to wishlist buttons.">
 <dd class="plate-v">Study piece. DualSense is a Sony product; this is not
 commissioned or affiliated work</dd></div>
 </dl>
-</div>
-</div>
-<div class="fusuma">
-<button class="fusuma-pull" type="button" aria-expanded="false" aria-controls="c4">
-<span class="handle" aria-hidden="true"></span>Read the case
-</button>
-<div class="fusuma-panel" id="c4">
-<div class="fusuma-inner"><div class="fusuma-body">
-<div>
-<h4>What I was testing</h4>
-<p>Product cards usually solve depth with a drop shadow and solve emphasis
-with a brighter button. I wanted to see whether the composition could
-carry both on its own.</p>
-</div>
-<div>
-<h4>Decisions</h4>
-<ul>
-<li>The ghosted word CONSOLE repeats behind the object. It builds three
-layers of depth — type, panel, product — without a single shadow.</li>
-<li>The controller breaks the panel edge, so the object owns the frame
-instead of sitting inside a container.</li>
-<li>Palette held to the controller's own two tones, which leaves the
-Add-to-cart button as the only saturated element competing with the
-product.</li>
-<li>Price sits directly under the name at a size the eye reaches second,
-before the description and before the colour swatches.</li>
-</ul>
-</div>
-<div>
-<h4>What I would change</h4>
-<p>Add to cart and Add to wishlist are almost the same weight, so the card
-has two primary actions and therefore none. The wishlist control should
-drop to a quiet outline.</p>
-</div>
-</div></div>
 </div>
 </div>
 </article>
