@@ -1348,3 +1348,11 @@ body.lightbox-lock{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .lightbox,.lightbox-img,.sketchbook-grid img{transition:none}
 }
+/* ── FIX: project link arrows ──────────────────────────────────────────── */
+.piece-visit .arrow{
+  width:20px;height:12px;flex:none;
+  background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 6h17M13 1l5 5-5 5'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 6h17M13 1l5 5-5 5'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.piece-visit .arrow::after{content:none}
